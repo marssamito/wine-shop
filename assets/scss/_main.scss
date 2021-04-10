@@ -14,8 +14,9 @@
 html,
 body {
   font-family: $fonts-family-raleway !important;
-  color: $color-dark-blue !important;
+  color: $color-light-gray !important;
 }
+small,
 ul li,
 ol li,
 h1,
@@ -24,10 +25,26 @@ h3,
 h4,
 h5,
 p {
-  color: $color-dark-blue !important;
+  color: $color-light-gray !important;
 }
 
-.ant-layout,
-.ant-layout-footer{
-  background-color: $color-white !important;
+// FOOTER & HEADER
+#components-wine-shop .ant-layout-header {
+  height: auto;
+  padding: 10px 50px;
+  line-height: initial;
+}
+#components-wine-shop .ant-layout-header {
+  background: $color-white;
+  color: $color-black !important;
+}
+#components-wine-shop .ant-layout-footer {
+  background: $color-white;
+  color: $color-light-gray-light;
+}
+#components-wine-shop .ant-layout-content {
+  min-height: 86vh;
+}
+#components-wine-shop > .ant-layout:last-child {
+  margin: 0;
 }

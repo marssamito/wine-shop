@@ -115,7 +115,7 @@
 }
 .ant-input:focus {
   border-color: $color-orange !important;
-  box-shadow: 0 0 0 2px $color-orange-transparent !important;
+  box-shadow: 0 0 0 2px transparent !important;
 }
 
 //MARGIN
@@ -212,12 +212,12 @@
 
 //BUTTONS
 .ant-btn-primary {
-  background-color: $color-dark-blue !important;
-  border-color: $color-dark-blue !important;
+  background-color: $color-light-gray !important;
+  border-color: $color-light-gray !important;
 }
 .ant-btn-primary:hover {
-  background-color: $color-dark-blue-light !important;
-  border-color: $color-dark-blue !important;
+  background-color: $color-light-gray-light !important;
+  border-color: $color-light-gray !important;
 }
 .ant-btn {
   height: 40px !important;

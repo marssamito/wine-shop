@@ -1,7 +1,9 @@
 <template>
-  <a-layout>
-    <PageHeader />
-    <Nuxt />
-    <PageFooter />
-  </a-layout>
+  <div id="components-wine-shop">
+    <a-layout>
+      <PageHeader />
+      <Nuxt />
+      <PageFooter />
+    </a-layout>
+  </div>
 </template>

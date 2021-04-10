@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
-    <h3>Wine Shop</h3>
-    <p>wineshop.com</p>
+    <h2 class="mb-0 font-weight-900">Wine Shop</h2>
+    <small class="mb-0">wineshop.com</small>
   </div>
 </template>
 

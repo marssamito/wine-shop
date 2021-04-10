@@ -1,13 +1,19 @@
 <template>
-  <div>
-    <div class="flex-center position-ref full-height text-center">
-      <div class="text-center"></div>
-    </div>
-  </div>
+  <a-layout-content>
+    {{ products }}
+  </a-layout-content>
 </template>
 
 <script>
 export default {
-  name: 'Lounge',
+  name: 'Shop',
+  data() {
+    return {
+      products: {},
+    }
+  },
+  // computed:{
+
+  // }
 }
 </script>
