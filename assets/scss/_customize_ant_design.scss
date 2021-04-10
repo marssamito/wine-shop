@@ -1,0 +1,318 @@
+//1. TEXT
+.text-center {
+  text-align: center !important;
+}
+.text-left {
+  text-align: left !important;
+}
+.text-right {
+  text-align: right !important;
+}
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+.text-bold {
+  font-weight: bold !important;
+}
+.text-light {
+  color: $color-white !important;
+}
+
+// FONT WEIGHT
+.font-weight-100 {
+  font-weight: 100 !important;
+}
+.font-weight-300 {
+  font-weight: 300 !important;
+}
+.font-weight-400 {
+  font-weight: 400 !important;
+}
+.font-weight-700 {
+  font-weight: 700 !important;
+}
+.font-weight-900 {
+  font-weight: 900 !important;
+}
+
+// FONT SIZES
+.font-size-22 {
+  font-size: 22px !important;
+}
+.font-size-10 {
+  font-size: 10px !important;
+}
+.font-size-10 a {
+  font-size: 10px !important;
+}
+
+// COLORS
+.text-primary-2 {
+  color: #114fa6 !important;
+}
+.text-primary {
+  color: #007bff !important;
+}
+.text-secondary {
+  color: #6c757d !important;
+}
+.text-success {
+  color: #28a745 !important;
+}
+.text-danger {
+  color: #dc3545 !important;
+}
+.text-warning {
+  color: #ffc107 !important;
+}
+.text-info {
+  color: #17a2b8 !important;
+}
+.text-light {
+  color: #f8f9fa !important;
+}
+
+.text-dark {
+  color: #343a40 !important;
+}
+.text-muted {
+  color: #6c757d !important;
+}
+.text-white {
+  color: #fff !important;
+}
+
+//PADDING
+.py-0 {
+  padding: 15px 0 !important;
+}
+.px-0 {
+  padding: 0 15px !important;
+}
+.px-15 {
+  padding: 15px !important;
+}
+
+//VERTICLAL ALIGN
+.vertical-align-top {
+  vertical-align: top !important;
+}
+
+// INPUT
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: $color-orange !important;
+  border-color: $color-orange !important;
+}
+.ant-checkbox-checked::after {
+  border: 1px $color-orange !important;
+}
+.ant-checkbox-inner {
+  border: 1px solid $color-orange !important;
+}
+.ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled),
+.ant-input:hover {
+  border-color: $color-orange !important;
+}
+.ant-input:focus {
+  border-color: $color-orange !important;
+  box-shadow: 0 0 0 2px $color-orange-transparent !important;
+}
+
+//MARGIN
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+.mr-0 {
+  margin-right: 0 !important;
+}
+.mt-0 {
+  margin-top: 0 !important;
+}
+.ml-0 {
+  margin-left: 0 !important;
+}
+//6
+.mb-6 {
+  margin-bottom: 30px !important;
+}
+.mr-6 {
+  margin-right: 30px !important;
+}
+.mt-6 {
+  margin-top: 30px !important;
+}
+.ml-6 {
+  margin-left: 30px !important;
+}
+//5
+.mb-5 {
+  margin-bottom: 25px !important;
+}
+.mr-5 {
+  margin-right: 25px !important;
+}
+.mt-5 {
+  margin-top: 25px !important;
+}
+.ml-5 {
+  margin-left: 25px !important;
+}
+//4
+.mb-4 {
+  margin-bottom: 20px !important;
+}
+.mr-4 {
+  margin-right: 20px !important;
+}
+.mt-4 {
+  margin-top: 20px !important;
+}
+.ml-4 {
+  margin-left: 20px !important;
+}
+//3
+.mb-3 {
+  margin-bottom: 15px !important;
+}
+.mr-3 {
+  margin-right: 15px !important;
+}
+.mt-3 {
+  margin-top: 15px !important;
+}
+.ml-3 {
+  margin-left: 15px !important;
+}
+//2
+.mb-2 {
+  margin-bottom: 10px !important;
+}
+.mr-2 {
+  margin-right: 10px !important;
+}
+.mt-2 {
+  margin-top: 10px !important;
+}
+.ml-2 {
+  margin-left: 10px !important;
+}
+//1
+.mb-1 {
+  margin-bottom: 5px !important;
+}
+.mr-1 {
+  margin-right: 5px !important;
+}
+.mt-1 {
+  margin-top: 5px !important;
+}
+.ml-1 {
+  margin-left: 5px !important;
+}
+
+//BUTTONS
+.ant-btn-primary {
+  background-color: $color-dark-blue !important;
+  border-color: $color-dark-blue !important;
+}
+.ant-btn-primary:hover {
+  background-color: $color-dark-blue-light !important;
+  border-color: $color-dark-blue !important;
+}
+.ant-btn {
+  height: 40px !important;
+}
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 3px;
+}
+.ant-btn-primary-disabled,
+.ant-btn-primary.disabled,
+.ant-btn-primary[disabled],
+.ant-btn-primary-disabled:hover,
+.ant-btn-primary.disabled:hover,
+.ant-btn-primary[disabled]:hover,
+.ant-btn-primary-disabled:focus,
+.ant-btn-primary.disabled:focus,
+.ant-btn-primary[disabled]:focus,
+.ant-btn-primary-disabled:active,
+.ant-btn-primary.disabled:active,
+.ant-btn-primary[disabled]:active,
+.ant-btn-primary-disabled.active,
+.ant-btn-primary.disabled.active,
+.ant-btn-primary[disabled].active {
+  color: rgba(0, 0, 0, 0.25) !important;
+  background-color: #f5f5f5 !important;
+  border-color: #d9d9d9 !important;
+}
+// # dark
+.btn-dark {
+  background-color: $color-black;
+  color: $color-white;
+}
+// # red
+.btn-red {
+  background-color: $color-red;
+  color: $color-white;
+}
+.btn-red:hover {
+  border: 1px solid $color-red;
+  background-color: transparent;
+  color: $color-red;
+}
+
+//LINKS
+a {
+  color: $color-orange !important;
+}
+a:hover {
+  color: $color-orange-light !important;
+}
+
+//DISPLAY
+.d-none {
+  display: none;
+}
+.d-block {
+  display: block !important;
+}
+.d-flex {
+  display: flex;
+}
+
+// WIDTH
+.w-15 {
+  width: 15%;
+}
+.w-25 {
+  width: 25%;
+}
+.w-50 {
+  width: 50%;
+}
+.w-75 {
+  width: 75%;
+}
+.w-100 {
+  width: 100%;
+}
+.w-200 {
+  width: 200%;
+}
+.w-300 {
+  width: 300%;
+}
+.w-22 {
+  width: 22.5%;
+}
+
+//BACKGROUND
+.bg-muted {
+  background-color: #f2f2f2 !important;
+}
+
+// HR
+hr {
+  border-top: 1px solid #eee;
+}
