@@ -13,6 +13,12 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  // runtime config
+  publicRuntimeConfig: {
+    apiURL: process.env.API_URL,
+    imgBaseUrl: process.env.IMG_BASE_URL || '',
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '~/assets/scss/global.scss',

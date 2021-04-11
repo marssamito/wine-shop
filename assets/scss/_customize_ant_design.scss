@@ -212,12 +212,18 @@
 
 //BUTTONS
 .ant-btn-primary {
-  background-color: $color-light-gray !important;
-  border-color: $color-light-gray !important;
+  background-color: $color-orange !important;
+  border-color: $color-orange !important;
 }
 .ant-btn-primary:hover {
-  background-color: $color-light-gray-light !important;
-  border-color: $color-light-gray !important;
+  background-color: $color-orange-light !important;
+  border-color: $color-orange !important;
+  color: $color-white !important;
+}
+.ant-btn:hover, 
+.ant-btn:focus {
+  color: $color-orange !important;
+  border-color: $color-orange !important;
 }
 .ant-btn {
   height: 40px !important;
@@ -316,3 +322,10 @@ a:hover {
 hr {
   border-top: 1px solid #eee;
 }
+
+.border-radius-0{
+  border-radius: 0 !important;
+}
+
+.ul.list-unstyled, .li {list-style-type: none;}
+.list-unstyled.li {padding-left: 2em; text-indent: -2em;}

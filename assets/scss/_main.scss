@@ -44,7 +44,89 @@ p {
 }
 #components-wine-shop .ant-layout-content {
   min-height: 86vh;
+  margin: 35px 0;
 }
 #components-wine-shop > .ant-layout:last-child {
   margin: 0;
+}
+
+// PRODUCTS GRID
+#components-wine-shop .products-box .image img{
+  height: 200px;
+  width: 100%;
+  object-fit: contain;
+}
+#components-wine-shop .products-box .ant-card {
+  background: $color-transparent !important;
+}
+#components-wine-shop .products-box.ant-card-bordered {
+  background: $color-transparent;
+  border: 0px solid;
+  min-height: 280px;
+}
+#components-wine-shop .products-box .ant-card-body .image{
+  width: 100px;
+}
+#components-wine-shop .products-box .ant-card-body{
+  display: inline-flex;
+  align-items: flex-end;
+  width: 100%;
+  background-color: #fff;
+}
+#components-wine-shop .products-box .ant-card-body .content .bottle{
+  border-right: 1px dotted;
+  padding-right: 10px;
+  margin-right: 10px;
+}
+#components-wine-shop .products-box .ant-card-body .content h1{
+  color: $color-light-gray-light !important;
+  font-size: 30px;
+}
+#components-wine-shop .products-box .ant-card-body .content h2{
+  color: $color-light-gray-light !important;
+  font-size: 17px;
+}
+#components-wine-shop .products-box .ant-card-body .content .ant-input-number{
+  width: 50px;
+}
+#components-wine-shop .ant-input{
+  height: 40px;
+}
+
+
+#components-wine-shop .ant-tabs-bar .ant-btn:hover, 
+#components-wine-shop .ant-tabs-bar .ant-btn:focus {
+  border-color: $color-transparent !important;
+}
+#components-wine-shop .ant-tag-checkable {
+  background-color: $color-orange;
+  border-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+#components-wine-shop .ant-btn-link,
+#components-wine-shop .ant-tabs-nav .ant-tabs-tab-active {
+  color: $color-orange;
+}
+#components-wine-shop .ant-tabs-ink-bar{
+  background-color: $color-orange;
+}
+#components-wine-shop .cart-summary-box ul{
+  height: 70px;
+  overflow-y: scroll;
+  padding-left: 5px;
+}
+#components-wine-shop .cart-summary-box ul li{
+  border-bottom: 1px dotted #dedede;
+}
+#components-wine-shop .cart-summary-box .total{
+  text-align: center;
+  font-weight: 900;
+  font-size: 1rem;
+  align-items: center;
+  display: grid;
+}
+
+#components-wine-shop .ant-modal-body{
+  padding-bottom: 0;
 }

@@ -9,7 +9,7 @@ const mutations = {
 }
 
 const actions = {
-  async fetchproducts(store) {
+  async fetchProducts(store) {
     const res = await this.$axios.get('wine-shop.json')
     store.commit('FETCH_PRODUCTS', res.data)
   },
