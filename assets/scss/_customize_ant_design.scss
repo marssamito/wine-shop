@@ -214,7 +214,9 @@
 .ant-btn-primary {
   background-color: $color-orange !important;
   border-color: $color-orange !important;
+  color: $color-white !important;
 }
+.ant-btn-primary:focus,
 .ant-btn-primary:hover {
   background-color: $color-orange-light !important;
   border-color: $color-orange !important;
@@ -222,7 +224,7 @@
 }
 .ant-btn:hover, 
 .ant-btn:focus {
-  color: $color-orange !important;
+  color: inherit !important;
   border-color: $color-orange !important;
 }
 .ant-btn {
@@ -329,3 +331,17 @@ hr {
 
 .ul.list-unstyled, .li {list-style-type: none;}
 .list-unstyled.li {padding-left: 2em; text-indent: -2em;}
+
+.align-items-center{
+  align-items: center;
+}
+.ant-modal-body{
+  padding-bottom: 0 !important;
+}
+.ant-modal-footer{
+  padding: 10px 0px !important;
+}
+
+.ant-tag-checkable:not(.ant-tag-checkable-checked):hover {
+  color: $color-orange !important;
+}

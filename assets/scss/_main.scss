@@ -98,10 +98,15 @@ p {
 #components-wine-shop .ant-tabs-bar .ant-btn:focus {
   border-color: $color-transparent !important;
 }
-#components-wine-shop .ant-tag-checkable {
-  background-color: $color-orange;
+#components-wine-shop .ant-tag-checkable.ant-tag-checkable-checked{
+  background-color: $color-orange !important;
   border-color: transparent;
   color: #fff;
+  cursor: pointer;
+}
+#components-wine-shop .ant-tag.ant-tag-checkable{
+  background-color: transparent;
+  border-color: $color-orange;
   cursor: pointer;
 }
 #components-wine-shop .ant-btn-link,
@@ -125,8 +130,4 @@ p {
   font-size: 1rem;
   align-items: center;
   display: grid;
-}
-
-#components-wine-shop .ant-modal-body{
-  padding-bottom: 0;
 }
