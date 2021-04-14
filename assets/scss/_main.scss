@@ -119,10 +119,16 @@ p {
 #components-wine-shop .cart-summary-box ul{
   height: 70px;
   overflow-y: scroll;
-  padding-left: 5px;
+  padding-left: 0px;
+  padding-right: 10px;
 }
 #components-wine-shop .cart-summary-box ul li{
   border-bottom: 1px dotted #dedede;
+}
+#components-wine-shop .cart-summary-box ul.alert{
+  height: auto;
+  overflow-y: hidden;
+  padding-left: 5px;
 }
 #components-wine-shop .cart-summary-box .total{
   text-align: center;
@@ -130,4 +136,7 @@ p {
   font-size: 1rem;
   align-items: center;
   display: grid;
+}
+#components-wine-shop .ant-tabs-bar {
+  margin: 0 15px 16px 0px;
 }

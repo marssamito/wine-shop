@@ -29,7 +29,7 @@
                   </template>
                 </div>
               </a-tab-pane>
-              <a-button slot="tabBarExtraContent" type="link">
+              <a-button slot="tabBarExtraContent" type="link" @click="showAll">
                 Show all
               </a-button>
             </a-tabs>
@@ -37,19 +37,48 @@
           <!-- cart/checkout -->
           <a-col :span="18">
             <a-card class="cart-summary-box">
-              <div class="d-flex mt-3 align-items-center">
-                <ul class="list-unstyled w-50 mb-0 pl-2">
-                  <li>Hunters Late Harvest Sauvignon-Blanc 1 Kshs 200.00</li>
-                  <li>Item 1 Kshs 230.00</li>
-                  <li>Hunters Late Harvest Sauvignon-Blanc 1 Kshs 10.00</li>
-                  <li>Item 1 Kshs 20.00</li>
-                  <li>Item 1 Kshs 380.00</li>
-                  <li>Item 1 Kshs 200.00</li>
-                  <li>Item 1 Kshs 300.00</li>
-                  <li>Item 1 Kshs 200.00</li>
-                  <li>Item 1 Kshs 30.00</li>
+              <div class="d-flex align-items-center">
+                <ul
+                  v-if="cart.length !== 0"
+                  class="list-unstyled w-50 mb-0 pl-2"
+                >
+                  <li
+                    v-for="(val, index) in cart.slice().reverse()"
+                    :key="index"
+                  >
+                    <div v-if="val.sub_total.bottle !== 0" class="d-flex">
+                      <div class="w-75">
+                        {{ index + 1 }}. {{ val.items.name }} (Bottle)
+                        <strong
+                          >{{ val.items.qtyBottle }} x
+                          {{ Math.round(val.items.cost.bottle) }}</strong
+                        >
+                      </div>
+                      <div class="text-right w-25 mr-2">
+                        Kshs {{ val.sub_total.bottle }}
+                      </div>
+                    </div>
+                    <div v-else-if="val.sub_total.case !== 0" class="d-flex">
+                      <div class="w-75">
+                        {{ index + 1 }}. {{ val.items.name }} (Case)
+                        <strong
+                          >{{ val.items.qtyCase }} x
+                          {{ Math.round(val.items.cost.case) }}</strong
+                        >
+                      </div>
+                      <div class="text-right w-25 mr-2">
+                        Kshs {{ val.sub_total.case }}
+                      </div>
+                    </div>
+                  </li>
                 </ul>
-                <div class="w-25 total">TOTAL <br />Kshs 800.00</div>
+                <ul v-else class="list-unstyled w-50 mb-0 pl-2 alert">
+                  <li>
+                    <a-alert message="Empty cart" banner type="info" />
+                  </li>
+                </ul>
+
+                <div class="w-25 total">TOTAL <br />Kshs {{ total }}</div>
                 <div class="w-25">
                   <a-button class="border-radius-0" @click="showModal"
                     >CART</a-button
@@ -94,10 +123,12 @@
                       <a-input-number
                         size="small"
                         :min="0"
-                        :max="100000"
+                        :max="100"
                         :default-value="0"
                         class="mr-1"
-                        @change="onChange"
+                        @change="
+                          addQtyBootleToProducts($event, product.no, 'bottle')
+                        "
                       />QTY
                     </div>
                     <div class="case">
@@ -105,18 +136,26 @@
                       <a-input-number
                         size="small"
                         :min="0"
-                        :max="100000"
+                        :max="100"
                         :default-value="0"
                         class="mr-1"
-                        @change="onChange"
+                        @change="
+                          addQtyBootleToProducts($event, product.no, 'case')
+                        "
                       />QTY
                     </div>
                   </div>
                   <a-button-group class="mt-3">
-                    <a-button class="border-radius-0" @click="showModal"
+                    <a-button
+                      class="border-radius-0"
+                      @click="detailsModal(product.no, 'details')"
                       >Details</a-button
                     >
-                    <a-button type="primary" class="border-radius-0">
+                    <a-button
+                      type="primary"
+                      class="border-radius-0"
+                      @click="addToCart(product.no)"
+                    >
                       Add to Cart
                     </a-button>
                   </a-button-group>
@@ -131,7 +170,7 @@
 
     <!-- MODAL - Details -->
     <a-modal
-      title="Product Details"
+      title=""
       :visible="visible"
       :confirm-loading="loading"
       centered
@@ -140,9 +179,7 @@
       on-ok="handleOk"
       footer=""
     >
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      <Details v-if="modalType == 'details'" :details="details" />
 
       <div class="ant-modal-footer">
         <a-button
@@ -151,6 +188,14 @@
           @click="handleCancel"
         >
           Close
+        </a-button>
+        <a-button
+          v-if="modalType == 'qty'"
+          key="back"
+          type="primary"
+          :disabled="loading ? true : false"
+        >
+          Submit
         </a-button>
       </div>
     </a-modal>
@@ -170,28 +215,32 @@ export default {
       checked1: '',
       search: '',
       products: this.$store.state.products.products,
-      visible: false,
-      loading: false,
       selectedProds: [],
       selectedTags: [],
+      details: [],
+      cart: [],
+      //
+      visible: false,
+      loading: false,
+      modalType: '',
     }
   },
   computed: {
     getProducts() {
-      const productsData = this.products
+      const productsData = this.$store.state.products.products
 
       // search
-      // if (this.search !== '') {
-      //   const searchValue = this.search.toLowerCase().slice(1)
+      if (this.search !== '') {
+        const searchValue = this.search.toLowerCase().slice(1)
 
-      //   return productsData.filter((product, index) => {
-      //     return (
-      //       product.name.toLowerCase().includes(searchValue) ||
-      //       product.no.toLowerCase().includes(searchValue) ||
-      //       product.details.toLowerCase().includes(searchValue)
-      //     )
-      //   })
-      // }
+        return productsData.filter((product, index) => {
+          return (
+            product.name.toLowerCase().includes(searchValue) ||
+            product.no.toLowerCase().includes(searchValue) ||
+            product.details.toLowerCase().includes(searchValue)
+          )
+        })
+      }
       return productsData
     },
     getProductsTags() {
@@ -205,18 +254,26 @@ export default {
       // remove dublicates
       return [...new Map(mergedArray.map((tag) => [tag, tag])).values()]
     },
+    total() {
+      return this.cart.reduce(function (total, value) {
+        return total + Number(value.total)
+      }, 0)
+    },
   },
-  // watch for any changes in products
+  // watch for any changes in getProducts
   watch: {
     getProducts() {
       this.products = this.getProducts
     },
     onSelectTags() {},
+    cart() {},
+    addQtyBootleToProducts() {},
+    addToCart() {},
   },
-  // Fetch products from store just incase this.products is empty/updated
-  mounted() {},
   methods: {
+    // ---- 1. FILTER TAGS/CATEGORIES
     onSelectTags(tag, checked) {
+      // get selected tags to an arrray this.selectedTags
       const { selectedTags } = this
       const nextSelectedTags = checked
         ? [...selectedTags, tag]
@@ -226,6 +283,7 @@ export default {
 
       const products = this.$store.state.products.products
 
+      // filter selected tags
       if (this.selectedTags.length !== 0) {
         this.products = products.filter((product, index) => {
           return this.selectedTags.some((item) => product.tags.includes(item))
@@ -234,14 +292,87 @@ export default {
         this.products = this.$store.state.products.products
       }
     },
+    // ---- 2. SHOW MORE DETAILS MODAL
+    detailsModal(idNo, modalType) {
+      this.visible = true
+      this.modalType = modalType
+
+      const products = this.$store.state.products.products
+      this.details = products.filter((product) => {
+        return product.no.includes(idNo)
+      })
+    },
+    // ---- 3. ADD TO CART
+    addToCart(idNo) {
+      const products = this.$store.state.products.products
+
+      for (let index = 0; index < products.length; index++) {
+        if (products[index].no === idNo) {
+          // check QTY is selected
+          if (products[index].qtyBottle || products[index].qtyCase) {
+            //
+            const bottleSubTotal =
+              Math.round(
+                products[index].qtyBottle * products[index].cost.bottle
+              ) || 0
+            const caseSubTotal =
+              Math.round(products[index].qtyCase * products[index].cost.case) ||
+              0
+            this.cart.push({
+              items: products[index],
+              sub_total: {
+                bottle: bottleSubTotal,
+                case: caseSubTotal,
+              },
+              total: bottleSubTotal + caseSubTotal,
+            })
+            this.$message
+              .loading('Adding ' + products[index].name + ' to cart...', 2.5)
+              .then(() =>
+                this.$message.success(
+                  'Successfully added ' + products[index].name + ' to cart.',
+                  2.5
+                )
+              )
+          } else {
+            this.$notification.error({
+              message: 'Add to Cart',
+              description:
+                'Kindly select Quantity (QTY) for ' + products[index].name,
+              duration: 8,
+            })
+          }
+        }
+      }
+    },
+    addQtyBootleToProducts(number, idNo, qtyType) {
+      const products = this.products
+      for (let index = 0; index < products.length; index++) {
+        if (products[index].no === idNo) {
+          if (qtyType === 'bottle') {
+            products[index].qtyBottle = number
+          } else if (qtyType === 'case') {
+            products[index].qtyCase = number
+          }
+        }
+      }
+    },
+    // addQtyCaseToProducts(idNo, qtyNumber) {},
+    // ---- 5. RESET/ SHOW ALL PRODUCTS
+    showAll() {
+      this.products = this.$store.state.products.products
+      this.selectedTags = []
+      this.search = ''
+    },
     onChange(e) {
       // console.log(`checked = ${e.target.checked}`)
     },
     showModal() {
       this.visible = true
     },
-    handleCancel(e) {
+    handleCancel() {
       this.visible = false
+      this.modalType = ''
     },
   },
 }
