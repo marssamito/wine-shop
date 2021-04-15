@@ -80,13 +80,13 @@
 
                 <div class="w-25 total">TOTAL <br />Kshs {{ total }}</div>
                 <div class="w-25">
-                  <a-button class="border-radius-0" @click="showModal"
+                  <a-button class="border-radius-0" @click="cartModal('cart')"
                     >CART</a-button
                   >
                   <a-button
                     type="primary"
                     class="border-radius-0"
-                    @click="showModal"
+                    @click="checkoutModal('checkout')"
                   >
                     CHECKOUT
                   </a-button>
@@ -170,7 +170,13 @@
 
     <!-- MODAL - Details -->
     <a-modal
-      title=""
+      :title="
+        modalType == 'cart'
+          ? 'Cart'
+          : '' || modalType == 'checkout'
+          ? 'Checkout'
+          : ''
+      "
       :visible="visible"
       :confirm-loading="loading"
       centered
@@ -178,24 +184,48 @@
       :mask-closable="false"
       on-ok="handleOk"
       footer=""
+      :width="
+        modalType == 'cart' ? 900 : 520 || modalType == 'checkout' ? 600 : 520
+      "
     >
       <Details v-if="modalType == 'details'" :details="details" />
+      <Cart v-if="modalType == 'cart'" :cart="cart" />
+      <Checkout v-if="modalType == 'checkout'" :cart="cart" />
 
       <div class="ant-modal-footer">
         <a-button
-          key="back"
+          key="close"
           :disabled="loading ? true : false"
           @click="handleCancel"
         >
-          Close
+          Cancel
         </a-button>
         <a-button
           v-if="modalType == 'qty'"
-          key="back"
+          key="qty"
           type="primary"
           :disabled="loading ? true : false"
         >
           Submit
+        </a-button>
+        <a-button
+          v-if="modalType == 'cart'"
+          key="cart"
+          type="primary"
+          :disabled="cart.length !== 0 ? false : true"
+          @click="checkoutModal('checkout')"
+        >
+          Checkout
+        </a-button>
+        <a-button
+          v-if="modalType == 'checkout'"
+          html-type="submit"
+          key="checkout"
+          type="primary"
+          :disabled="cart.length !== 0 ? false : true"
+          @click="placeHolder()"
+        >
+          Place Order
         </a-button>
       </div>
     </a-modal>
@@ -302,6 +332,35 @@ export default {
         return product.no.includes(idNo)
       })
     },
+    cartModal(modalType) {
+      this.visible = true
+      this.modalType = modalType
+    },
+    checkoutModal(modalType) {
+      this.visible = false
+      setTimeout(() => {
+        this.visible = true
+        this.modalType = modalType
+      }, 500)
+    },
+    async placeHolder(formData) {
+      try {
+        const result = await this.$refs[formData].validate()
+        if (result) {
+          this.$notification.success({
+            message: 'Order',
+            description: 'Your order has been placed successfully!',
+            duration: 4,
+          })
+          setTimeout(() => {
+            this.visible = false
+            this.cart = []
+          }, 1500)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    },
     // ---- 3. ADD TO CART
     addToCart(idNo) {
       const products = this.$store.state.products.products
@@ -363,12 +422,6 @@ export default {
       this.products = this.$store.state.products.products
       this.selectedTags = []
       this.search = ''
-    },
-    onChange(e) {
-      // console.log(`checked = ${e.target.checked}`)
-    },
-    showModal() {
-      this.visible = true
     },
     handleCancel() {
       this.visible = false
