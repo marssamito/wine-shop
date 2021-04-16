@@ -3,18 +3,102 @@
 
 ////////// 1. DOWN
 // Small devices (landscape phones, 576px and down)
-@media (max-width: 576px) {
-  
+@media (max-width: 320px) {
+  .ant-card-body .align-items-center {
+    display: block;
+  }
+  #components-wine-shop .cart-summary-box .w-25,
+  #components-wine-shop .cart-summary-box ul.alert{
+    width: 100%;
+  }
+  #components-wine-shop .cart-summary-box .total{
+    width: 100%;
+    text-align: left;
+    display: block;
+    background-color: #e8e8e8;
+    padding: 10px;
+    margin: 5px 0;
+  }
+  #components-wine-shop .cart-summary-box .ant-card-body {
+    padding: 18px;
+  }
+  #components-wine-shop .cart-summary-box {
+    margin-top: 15px;
+  }
+  #components-wine-shop .ant-tabs-bar {
+    margin: 0px 15px 16px 15px;
+  }
+  .ant-modal-content .ant-modal-body {
+    padding: 5px;
+    font-size: 12px;
+    line-height: 1;
+  }
+  .ant-page-header,
+  .ant-table-body .ant-table-thead > tr > th, 
+  .ant-table-body .ant-table-tbody > tr > td {
+    padding: 5px 5px !important;
+  }
+  .ant-page-header-heading-title {
+    font-size: 16px;
+    line-height: normal;
+  }
 }
 
 // Medium devices (tablets, 768px and down)
 @media (max-width: 768px) {
-  
+  .ant-card-body .align-items-center {
+    display: block;
+  }
+  #components-wine-shop .cart-summary-box .w-25,
+  #components-wine-shop .cart-summary-box ul.alert{
+    width: 100%;
+  }
+  #components-wine-shop .cart-summary-box .total{
+    width: 100%;
+    text-align: left;
+    display: block;
+    background-color: #e8e8e8;
+    padding: 10px;
+    margin: 5px 0;
+  }
+  #components-wine-shop .cart-summary-box .ant-card-body {
+    padding: 18px;
+  }
+  #components-wine-shop .cart-summary-box {
+    margin-top: 15px;
+  }
+  #components-wine-shop .ant-input-wrapper .ant-input,
+  #components-wine-shop .ant-tabs.ant-tabs-top.ant-tabs-line{
+    margin-left: 15px;
+  }
+  #components-wine-shop .cart-summary-box ul.alert {
+    padding: 0;
+  }
+  .ant-modal-content .ant-modal-body {
+    padding: 5px;
+    font-size: 12px;
+    line-height: 1;
+  }
+  .ant-page-header,
+  .ant-table-body .ant-table-thead > tr > th, 
+  .ant-table-body .ant-table-tbody > tr > td {
+    padding: 5px 5px !important;
+  }
+  .ant-page-header-heading-title {
+    font-size: 16px;
+    line-height: normal;
+  }
 }
 
 // Large devices (desktops, 992px and down)
 @media (max-width: 992px) {
-  
+    #components-wine-shop .cart-summary-box {
+      margin-top: 15px;
+    }
+    #components-wine-shop .ant-input-wrapper .ant-input,
+    #components-wine-shop .ant-tabs.ant-tabs-top.ant-tabs-line{
+      margin-left: 15px;
+    }
 }
 // Extra large devices (large desktops, 1200px and down)
 @media (max-width: 1200px) {

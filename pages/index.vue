@@ -1,10 +1,16 @@
 <template>
   <a-layout-content>
     <a-row>
-      <a-col :span="18" :offset="3">
+      <a-col
+        :xs="{ span: 24, offset: 0 }"
+        :sm="{ span: 24, offset: 0 }"
+        :md="{ span: 24, offset: 0 }"
+        :lg="{ span: 22, offset: 1 }"
+        :xl="{ span: 18, offset: 3 }"
+      >
         <a-row class="mb-4">
           <!-- search/filters -->
-          <a-col :span="6">
+          <a-col :xs="24" :sm="24" :md="24" :lg="6" :xl="6">
             <a-input-search
               v-model="search"
               placeholder="Search..."
@@ -35,7 +41,7 @@
             </a-tabs>
           </a-col>
           <!-- cart/checkout -->
-          <a-col :span="18">
+          <a-col :xs="24" :sm="24" :md="24" :lg="18" :xl="18">
             <a-card class="cart-summary-box">
               <div class="d-flex align-items-center">
                 <ul
@@ -78,7 +84,7 @@
                   </li>
                 </ul>
 
-                <div class="w-25 total">TOTAL <br />Kshs {{ total }}</div>
+                <div class="w-25 total">TOTAL Kshs {{ total }}</div>
                 <div class="w-25">
                   <a-button class="border-radius-0" @click="cartModal('cart')"
                     >CART</a-button
@@ -102,7 +108,11 @@
             <a-col
               v-for="(product, index) in products.slice((i - 1) * 3, i * 3)"
               :key="index"
-              :span="8"
+              :xs="24"
+              :sm="24"
+              :md="12"
+              :lg="8"
+              :xl="8"
             >
               <a-card class="products-box">
                 <!-- image -->
@@ -219,8 +229,8 @@
         </a-button>
         <a-button
           v-if="modalType == 'checkout'"
-          html-type="submit"
           key="checkout"
+          html-type="submit"
           type="primary"
           :disabled="cart.length !== 0 ? false : true"
           @click="placeHolder()"
