@@ -353,10 +353,10 @@ export default {
         this.modalType = modalType
       }, 500)
     },
-    async placeHolder(formData) {
+    placeHolder(formData) {
       try {
-        const result = await this.$refs[formData].validate()
-        if (result) {
+        // const result = await this.$refs[formData].validate()
+        if (this.formData.paymentMethod) {
           this.$notification.success({
             message: 'Order',
             description: 'Your order has been placed successfully!',
@@ -368,7 +368,7 @@ export default {
           }, 1500)
         }
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
     // ---- 3. ADD TO CART

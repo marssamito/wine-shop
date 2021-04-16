@@ -1,8 +1,8 @@
 <template>
   <div id="cart">
     <a-form-model
-      layout="inline"
       ref="formData"
+      layout="inline"
       :model="formData"
       :rules="rules"
     >
@@ -95,8 +95,8 @@ export default {
         estate: '',
         phone_no: '',
         address: '',
+        paymentMethod: true,
       },
-      paymentMethod: true,
       dataSource: this.cart,
       columns: [
         {
