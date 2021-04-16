@@ -353,20 +353,20 @@ export default {
         this.modalType = modalType
       }, 500)
     },
-    placeHolder(formData) {
+    placeHolder() {
       try {
         // const result = await this.$refs[formData].validate()
-        if (this.formData.paymentMethod) {
-          this.$notification.success({
-            message: 'Order',
-            description: 'Your order has been placed successfully!',
-            duration: 4,
-          })
-          setTimeout(() => {
-            this.visible = false
-            this.cart = []
-          }, 1500)
-        }
+        // if (this.formData.paymentMethod) {
+        this.$notification.success({
+          message: 'Order',
+          description: 'Your order has been placed successfully!',
+          duration: 4,
+        })
+        setTimeout(() => {
+          this.visible = false
+          this.cart = []
+        }, 1500)
+        // }
       } catch (error) {
         // console.log(error)
       }
