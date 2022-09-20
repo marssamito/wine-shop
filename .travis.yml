@@ -4,6 +4,6 @@ node_js:
 script:
  - echo "Deploy!!"
 install:
-  - sudo npm install --unsafe-perm -g firebase-tools
+  - npm i -g firebase-tools@v3.17.2
 after_success:
   - firebase deploy --samwineshop --token $1//03JLAIX3XZv9XCgYIARAAGAMSNwF-L9Ir-idEJzHT2G5YqNXFMLxK-p01xPf7oE8dEXGtj95rs9EJCkQjDbCO-bQpuE-MDSQCJt4
